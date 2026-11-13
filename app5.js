@@ -61,6 +61,19 @@ app.get("/keiyo2/:number", (req, res) => {
   res.render('keiyo2_detail', {data: detail} );
 });
 
+// 第9回 やってみよう(3)：station2 へのデータ追加（項目が6つに増えている）
+app.get("/keiyo2_add", (req, res) => {
+  let id = Number( req.query.id );
+  let code = req.query.code;
+  let name = req.query.name;
+  let change = req.query.change;
+  let passengers = Number( req.query.passengers );
+  let distance = Number( req.query.distance );
+  let newdata = { id: id, code: code, name: name, change: change, passengers: passengers, distance: distance };
+  station2.push( newdata );
+  res.render('keiyo2', {data: station2} );
+});
+
 // 第8回 やってみよう(2)(3)：駅以外のデータ（ダーツの練習記録）
 let darts = [
   { id: 1, date: "2026-10-04", game: "カウントアップ", score: 512, place: "ラウンドワン習志野" },
