@@ -1,0 +1,21 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ダーツの練習記録</title>
+</head>
+<body>
+  <h2>ダーツの練習記録</h2>
+  <table>
+    <tr><th>ID</th><th>日付</th><th>ゲーム</th><th>スコア</th><th>場所</th></tr>
+      <% for( let row of data ) { %>
+        <tr><td><%= row.id %></td>
+        <td><%= row.date %></td>
+        <td><%= row.game %></td>
+        <td><%= row.score %></td>
+        <td><%= row.place %></td></tr>
+      <% } %>
+  </table>
+  <a href="/public/darts_add.html">記録を追加する</a>
+</body>
+</html>

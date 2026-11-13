@@ -38,6 +38,30 @@ app.get("/keiyo_add", (req, res) => {
   res.render('db2', { data: station });       // 例2：一覧を表示する場合
 });
 
+// 第8回 やってみよう(2)(3)：駅以外のデータ（ダーツの練習記録）
+let darts = [
+  { id: 1, date: "2026-10-04", game: "カウントアップ", score: 512, place: "ラウンドワン習志野" },
+  { id: 2, date: "2026-10-11", game: "カウントアップ", score: 548, place: "ラウンドワン習志野" },
+  { id: 3, date: "2026-10-18", game: "カウントアップ", score: 530, place: "ラウンドワン習志野" },
+  { id: 4, date: "2026-10-25", game: "カウントアップ", score: 565, place: "ラウンドワン習志野" },
+];
+
+app.get("/darts", (req, res) => {
+  // 本来ならここにDBとのやり取りが入る
+  res.render('darts', { data: darts });
+});
+
+app.get("/darts_add", (req, res) => {
+  let id = Number( req.query.id );
+  let date = req.query.date;
+  let game = req.query.game;
+  let score = Number( req.query.score );
+  let place = req.query.place;
+  let newdata = { id: id, date: date, game: game, score: score, place: place };
+  darts.push( newdata );
+  res.render('darts', { data: darts });
+});
+
 app.get("/hello1", (req, res) => {
   const message1 = "Hello world";
   const message2 = "Bon jour";
