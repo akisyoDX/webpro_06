@@ -20,8 +20,22 @@ app.get("/keiyo", (req, res) => {
 });
 
 // P17の表形式も確認できるようにする。
-app.get("/keiyo2", (req, res) => {
+// 第9回で /keiyo2 を使うため，/keiyo_table に変更した
+app.get("/keiyo_table", (req, res) => {
   res.render("db2", { data: station });
+});
+
+// 第8回：データの追加
+// 登録後に返すページは，入力画面へのリダイレクトと一覧表示の2通りを試した．
+// 入力画面に戻すと登録できたか分からないため，一覧表示を採用する．
+app.get("/keiyo_add", (req, res) => {
+  let id = req.query.id;
+  let code = req.query.code;
+  let name = req.query.name;
+  let newdata = { id: id, code: code, name: name };
+  station.push( newdata );
+  // res.redirect('/public/keiyo_add.html');  // 例1：入力画面に戻す場合
+  res.render('db2', { data: station });       // 例2：一覧を表示する場合
 });
 
 app.get("/hello1", (req, res) => {
